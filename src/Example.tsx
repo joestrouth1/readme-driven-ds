@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { Thing } from '@/src/Thing'
 
-interface ExampleProps {
+export interface ExampleProps {
   /**
-   * Bnana
+   * Banana
    */
   banana: boolean
 }

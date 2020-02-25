@@ -10,6 +10,16 @@ addParameters({
   docs: {
     container: DocsContainer,
     page: DocsPage,
+    extractComponentDescription(component, storyParameters) {
+      console.log({ component, storyParameters })
+      if (
+        component.__docgenInfo?.description &&
+        typeof component.__docgenInfo.description === 'string'
+      ) {
+        return component.__docgenInfo.description
+      }
+      return null
+    },
   },
   viewport: {
     viewports: INITIAL_VIEWPORTS,
