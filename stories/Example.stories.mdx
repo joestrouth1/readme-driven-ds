@@ -1,0 +1,43 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks'
+import { Example } from '@/src/Example'
+import { Thing } from '@/src/Thing'
+
+<Meta
+  title="MDX/Example"
+  component={Example}
+  parameters={{ subcomponents: { Thing } }}
+/>
+
+# Example
+
+With `MDX` we can define stories for `Example` right in the middle of our
+markdown documentation.
+
+<Props of={Example} />
+
+## Stories
+
+### Singular
+
+You can render one story at a time in a preview:
+
+<Preview>
+  <Story name="One example">
+    <Example banana={false} />
+  </Story>
+</Preview>
+
+Or on its own:
+
+<Story id="mdx-example--one-example" />
+
+### Multiple
+
+<Preview>
+  <Story name="Multiple stories">
+    <div>
+      <Example banana={false} />
+      <Example banana={false} />
+    </div>
+  </Story>
+</Preview>

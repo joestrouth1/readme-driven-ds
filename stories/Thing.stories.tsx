@@ -2,6 +2,10 @@ import React from 'react'
 import { Thing } from '@/src/Thing'
 import { Example } from '@/src/Example'
 
+/**
+ * This file uses Component-Story Format or CSF
+ */
+
 export default {
   title: 'Thing',
   parameters: {

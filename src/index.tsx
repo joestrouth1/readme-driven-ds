@@ -1,2 +1,2 @@
-export * from './Thing'
-export * from './Example'
+export { Example } from './Example'
+export { Thing } from './Thing'

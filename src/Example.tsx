@@ -6,6 +6,7 @@ export interface ExampleProps {
    * Banana
    */
   banana: boolean
+  square?: string
 }
 
 export const Example = ({ banana }: ExampleProps) => {

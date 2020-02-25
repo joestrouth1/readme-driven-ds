@@ -1,25 +1,29 @@
 const path = require('path')
+const createCompiler = require('@storybook/addon-docs/mdx-compiler-plugin')
+
 module.exports = ({ config }) => {
 
   config.module.rules.push({
-    test: /\.tsx?$/,
-    loaders: [
+    // 2a. Load `.stories.mdx` / `.story.mdx` files as CSF and generate
+    //     the docs page from the markdown
+    test: /\.(stories|story)\.mdx$/,
+    use: [
       {
-        loader: require.resolve('@storybook/source-loader'),
+        loader: 'babel-loader',
+        // may or may not need this line depending on your app's setup
         options: {
-          parser: 'typescript', prettierConfig: {
-            printWidth: 80,
-            tabWidth: 2,
-            bracketSpacing: true,
-            semi: false,
-            trailingComma: 'es5',
-            singleQuote: true,
-          }
+          plugins: ['@babel/plugin-transform-react-jsx'],
+        },
+      },
+      {
+        loader: '@mdx-js/loader',
+        options: {
+          compilers: [createCompiler({})],
         },
       },
     ],
-    enforce: 'pre',
-  });
+  })
+
   config.module.rules.push({
     test: /\.(ts|tsx)$/,
     use: [
@@ -37,6 +41,28 @@ module.exports = ({ config }) => {
       }
     ]
   })
+
+  config.module.rules.push({
+    test: /\.(stories|story)\.[tj]sx?$/,
+    exclude: [/node_modules/],
+    loaders: [
+      {
+        loader: require.resolve('@storybook/source-loader'),
+        options: {
+          prettierConfig: {
+            printWidth: 80,
+            tabWidth: 2,
+            bracketSpacing: true,
+            semi: false,
+            trailingComma: 'es5',
+            singleQuote: true,
+          }
+        },
+      },
+    ],
+    enforce: 'pre',
+  });
+
   config.resolve.extensions.push('.ts', '.tsx')
   config.resolve.alias = Object.assign(config.resolve.alias, { '@': path.resolve(__dirname, '..') })
   return config
