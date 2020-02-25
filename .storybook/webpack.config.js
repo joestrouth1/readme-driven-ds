@@ -21,12 +21,18 @@ module.exports = ({ config }) => {
     enforce: 'pre',
   });
   config.module.rules.push({
-    test: /\.tsx?$/,
+    test: /\.(ts|tsx)$/,
     use: [
       {
         loader: require.resolve('ts-loader'),
         options: {
           reportFiles: ['stories/**/*.{ts|tsx}']
+        }
+      },
+      {
+        loader: require.resolve('react-docgen-typescript-loader'),
+        options: {
+          tsconfigPath: path.resolve(__dirname, '../tsconfig.json'),
         }
       }
     ]

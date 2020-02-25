@@ -1,11 +1,16 @@
 import { addParameters, addDecorator } from '@storybook/react'
 import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport'
 import { withA11y } from '@storybook/addon-a11y'
+import { DocsPage, DocsContainer } from '@storybook/addon-docs/blocks'
 import { configure } from '@storybook/react'
 
 addDecorator(withA11y)
 
 addParameters({
+  docs: {
+    container: DocsContainer,
+    page: DocsPage,
+  },
   viewport: {
     viewports: INITIAL_VIEWPORTS,
   },
