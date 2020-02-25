@@ -9,6 +9,6 @@ export interface ThingProps {
 /**
  * Renders a thing very nicely
  */
-export const Thing = (props: ThingProps) => {
-  return <div>{props.color} the snozzberries taste like snozzberries</div>
+export const Thing = ({ color = 'blue' }: ThingProps) => {
+  return <div>{color} the snozzberries taste like snozzberries</div>
 }
